@@ -1,5 +1,3 @@
-// server.js
-
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -13,12 +11,17 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB Connected"))
+.then(() => console.log("MongoDB Atlas Connected"))
 .catch((err) => console.log(err));
+
+app.get("/", (req, res) => {
+    res.send("API Running...");
+});
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
+app.use("/api/test", require("./routes/testRoutes"));
 
 const PORT = process.env.PORT || 5000;
 

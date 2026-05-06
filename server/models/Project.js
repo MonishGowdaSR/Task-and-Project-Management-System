@@ -1,5 +1,3 @@
-// models/Project.js
-
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema(
@@ -11,6 +9,7 @@ const projectSchema = new mongoose.Schema(
 
     description: {
         type: String,
+        default: "",
     },
 
     deadline: {
@@ -22,7 +21,9 @@ const projectSchema = new mongoose.Schema(
         ref: "User",
     },
 },
-{ timestamps: true }
+{
+    timestamps: true,
+}
 );
 
 module.exports = mongoose.model("Project", projectSchema);

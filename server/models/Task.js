@@ -1,5 +1,3 @@
-// models/Task.js
-
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema(
@@ -9,7 +7,10 @@ const taskSchema = new mongoose.Schema(
         required: true,
     },
 
-    description: String,
+    description: {
+        type: String,
+        default: "",
+    },
 
     priority: {
         type: String,
@@ -32,8 +33,15 @@ const taskSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Project",
     },
+
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
 },
-{ timestamps: true }
+{
+    timestamps: true,
+}
 );
 
 module.exports = mongoose.model("Task", taskSchema);
