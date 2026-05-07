@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import toast from "react-hot-toast";
+
 import API from "../api/axios";
 
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -8,20 +10,26 @@ import TaskCard from "../components/TaskCard";
 
 const Tasks = () => {
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] =
+    useState([]);
 
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] =
+    useState([]);
+
+  const [loading, setLoading] =
+    useState(false);
 
   const [editingTask, setEditingTask] =
     useState(null);
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    priority: "Medium",
-    status: "To Do",
-    project: "",
-  });
+  const [formData, setFormData] =
+    useState({
+      title: "",
+      description: "",
+      priority: "Medium",
+      status: "To Do",
+      project: "",
+    });
 
   useEffect(() => {
 
@@ -35,13 +43,17 @@ const Tasks = () => {
 
     try {
 
-      const { data } = await API.get("/tasks");
+      const { data } = await API.get(
+        "/tasks"
+      );
 
       setTasks(data);
 
     } catch (error) {
 
-      console.log(error);
+      toast.error(
+        "Failed to fetch tasks"
+      );
     }
   };
 
@@ -49,13 +61,17 @@ const Tasks = () => {
 
     try {
 
-      const { data } = await API.get("/projects");
+      const { data } = await API.get(
+        "/projects"
+      );
 
       setProjects(data);
 
     } catch (error) {
 
-      console.log(error);
+      toast.error(
+        "Failed to fetch projects"
+      );
     }
   };
 
@@ -71,6 +87,8 @@ const Tasks = () => {
 
     e.preventDefault();
 
+    setLoading(true);
+
     try {
 
       if (editingTask) {
@@ -80,11 +98,19 @@ const Tasks = () => {
           formData
         );
 
+        toast.success(
+          "Task updated successfully"
+        );
+
       } else {
 
         await API.post(
           "/tasks",
           formData
+        );
+
+        toast.success(
+          "Task created successfully"
         );
       }
 
@@ -102,7 +128,14 @@ const Tasks = () => {
 
     } catch (error) {
 
-      console.log(error);
+      toast.error(
+        error.response?.data?.message ||
+        "Something went wrong"
+      );
+
+    } finally {
+
+      setLoading(false);
     }
   };
 
@@ -117,13 +150,21 @@ const Tasks = () => {
 
     try {
 
-      await API.delete(`/tasks/${id}`);
+      await API.delete(
+        `/tasks/${id}`
+      );
+
+      toast.success(
+        "Task deleted successfully"
+      );
 
       fetchTasks();
 
     } catch (error) {
 
-      console.log(error);
+      toast.error(
+        "Failed to delete task"
+      );
     }
   };
 
@@ -133,10 +174,12 @@ const Tasks = () => {
 
     setFormData({
       title: task.title,
-      description: task.description,
+      description:
+        task.description,
       priority: task.priority,
       status: task.status,
-      project: task.project?._id || "",
+      project:
+        task.project?._id || "",
     });
   };
 
@@ -253,10 +296,15 @@ const Tasks = () => {
 
         <button
           type="submit"
-          className="mt-6 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg"
+          disabled={loading}
+          className="mt-6 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg disabled:opacity-50"
         >
 
-          {editingTask
+          {loading
+            ? editingTask
+              ? "Updating..."
+              : "Creating..."
+            : editingTask
             ? "Update Task"
             : "Create Task"}
 
@@ -264,20 +312,38 @@ const Tasks = () => {
 
       </form>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {tasks.length === 0 ? (
 
-        {tasks.map((task) => (
+        <div className="bg-white p-10 rounded-xl shadow text-center">
 
-          <TaskCard
-            key={task._id}
-            task={task}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-          />
+          <h2 className="text-2xl font-bold mb-3">
+            No Tasks Found
+          </h2>
 
-        ))}
+          <p className="text-gray-500">
+            Create your first task
+          </p>
 
-      </div>
+        </div>
+
+      ) : (
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {tasks.map((task) => (
+
+            <TaskCard
+              key={task._id}
+              task={task}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+
+          ))}
+
+        </div>
+
+      )}
 
     </DashboardLayout>
   );

@@ -1,20 +1,35 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+
+import {
+  useNavigate,
+  Link,
+} from "react-router-dom";
+
+import toast from "react-hot-toast";
+
 import API from "../api/axios";
+
 import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
+
   const navigate = useNavigate();
+
   const { login } = useAuth();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [loading, setLoading] =
+    useState(false);
+
+  const [formData, setFormData] =
+    useState({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
 
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -22,15 +37,23 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     if (
-      formData.password !== formData.confirmPassword
+      formData.password !==
+      formData.confirmPassword
     ) {
-      return alert("Passwords do not match");
+
+      return toast.error(
+        "Passwords do not match"
+      );
     }
 
+    setLoading(true);
+
     try {
+
       const { data } = await API.post(
         "/auth/register",
         {
@@ -42,22 +65,34 @@ const Register = () => {
 
       login(data);
 
+      toast.success(
+        "Registration successful"
+      );
+
       navigate("/dashboard");
 
     } catch (error) {
-      alert(
+
+      toast.error(
         error.response?.data?.message ||
-          "Registration failed"
+        "Registration failed"
       );
+
+    } finally {
+
+      setLoading(false);
     }
   };
 
   return (
+
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
       >
+
         <h2 className="text-3xl font-bold mb-6 text-center">
           Register
         </h2>
@@ -104,21 +139,31 @@ const Register = () => {
 
         <button
           type="submit"
-          className="w-full bg-black text-white p-3 rounded-lg"
+          disabled={loading}
+          className="w-full bg-black hover:bg-gray-800 text-white p-3 rounded-lg disabled:opacity-50"
         >
-          Register
+
+          {loading
+            ? "Registering..."
+            : "Register"}
+
         </button>
 
         <p className="mt-4 text-center">
+
           Already have an account?{" "}
+
           <Link
             to="/login"
             className="text-blue-500"
           >
             Login
           </Link>
+
         </p>
+
       </form>
+
     </div>
   );
 };
