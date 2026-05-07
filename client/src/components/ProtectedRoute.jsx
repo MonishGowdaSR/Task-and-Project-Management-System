@@ -1,11 +1,14 @@
-// components/ProtectedRoute.jsx
-
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-    const user = JSON.parse(localStorage.getItem("user"));
+  const { userInfo } = useAuth();
 
-    return user ? children : <Navigate to="/login" />;
+  if (!userInfo) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;

@@ -1,24 +1,58 @@
-// components/Sidebar.jsx
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Sidebar = () => {
-    return (
-        <div className="w-64 h-screen bg-gray-900 text-white p-5">
+  const navigate = useNavigate();
 
-            <h1 className="text-2xl font-bold mb-8">
-                AI Project Manager
-            </h1>
+  const { logout } = useAuth();
 
-            <nav className="flex flex-col gap-4">
+  const handleLogout = () => {
+    logout();
 
-                <Link to="/">Dashboard</Link>
-                <Link to="/projects">Projects</Link>
-                <Link to="/tasks">Tasks</Link>
+    navigate("/login");
+  };
 
-            </nav>
-        </div>
-    );
+  return (
+    <div className="bg-gray-900 text-white w-64 min-h-screen p-6">
+
+      <h1 className="text-2xl font-bold mb-10">
+        AI Project Manager
+      </h1>
+
+      <nav className="flex flex-col gap-4">
+
+        <Link
+          to="/dashboard"
+          className="hover:bg-gray-700 p-3 rounded-lg"
+        >
+          Dashboard
+        </Link>
+
+        <Link
+          to="/projects"
+          className="hover:bg-gray-700 p-3 rounded-lg"
+        >
+          Projects
+        </Link>
+
+        <Link
+          to="/tasks"
+          className="hover:bg-gray-700 p-3 rounded-lg"
+        >
+          Tasks
+        </Link>
+
+        <button
+          onClick={handleLogout}
+          className="bg-red-500 hover:bg-red-600 mt-10 p-3 rounded-lg"
+        >
+          Logout
+        </button>
+
+      </nav>
+
+    </div>
+  );
 };
 
 export default Sidebar;
