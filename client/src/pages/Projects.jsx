@@ -13,6 +13,9 @@ const Projects = () => {
   const [projects, setProjects] =
     useState([]);
 
+  const [searchTerm, setSearchTerm] =
+    useState("");
+
   const [loading, setLoading] =
     useState(false);
 
@@ -154,6 +157,15 @@ const Projects = () => {
     });
   };
 
+  const filteredProjects =
+    projects.filter((project) =>
+      project.title
+        .toLowerCase()
+        .includes(
+          searchTerm.toLowerCase()
+        )
+    );
+
   return (
 
     <DashboardLayout>
@@ -163,6 +175,22 @@ const Projects = () => {
         <h1 className="text-4xl font-bold">
           Projects
         </h1>
+
+      </div>
+
+      <div className="mb-6">
+
+        <input
+          type="text"
+          placeholder="Search projects..."
+          value={searchTerm}
+          onChange={(e) =>
+            setSearchTerm(
+              e.target.value
+            )
+          }
+          className="w-full md:w-96 p-3 border rounded-lg"
+        />
 
       </div>
 
@@ -230,7 +258,7 @@ const Projects = () => {
 
       </form>
 
-      {projects.length === 0 ? (
+      {filteredProjects.length === 0 ? (
 
         <div className="bg-white p-10 rounded-xl shadow text-center">
 
@@ -248,7 +276,7 @@ const Projects = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
 
             <ProjectCard
               key={project._id}

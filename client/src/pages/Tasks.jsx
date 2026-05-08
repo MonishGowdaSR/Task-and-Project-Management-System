@@ -16,6 +16,15 @@ const Tasks = () => {
   const [projects, setProjects] =
     useState([]);
 
+  const [searchTerm, setSearchTerm] =
+    useState("");
+
+  const [statusFilter, setStatusFilter] =
+    useState("All");
+
+  const [priorityFilter, setPriorityFilter] =
+    useState("All");
+
   const [loading, setLoading] =
     useState(false);
 
@@ -183,6 +192,38 @@ const Tasks = () => {
     });
   };
 
+  const filteredTasks = tasks.filter(
+    (task) => {
+
+      const matchesSearch =
+        task.title
+          .toLowerCase()
+          .includes(
+            searchTerm.toLowerCase()
+          ) ||
+        task.description
+          .toLowerCase()
+          .includes(
+            searchTerm.toLowerCase()
+          );
+
+      const matchesStatus =
+        statusFilter === "All" ||
+        task.status === statusFilter;
+
+      const matchesPriority =
+        priorityFilter === "All" ||
+        task.priority ===
+          priorityFilter;
+
+      return (
+        matchesSearch &&
+        matchesStatus &&
+        matchesPriority
+      );
+    }
+  );
+
   return (
 
     <DashboardLayout>
@@ -190,6 +231,78 @@ const Tasks = () => {
       <h1 className="text-4xl font-bold mb-8">
         Tasks
       </h1>
+
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+
+        <input
+          type="text"
+          placeholder="Search tasks..."
+          value={searchTerm}
+          onChange={(e) =>
+            setSearchTerm(
+              e.target.value
+            )
+          }
+          className="p-3 border rounded-lg flex-1"
+        />
+
+        <select
+          value={statusFilter}
+          onChange={(e) =>
+            setStatusFilter(
+              e.target.value
+            )
+          }
+          className="p-3 border rounded-lg"
+        >
+
+          <option value="All">
+            All Status
+          </option>
+
+          <option value="To Do">
+            To Do
+          </option>
+
+          <option value="In Progress">
+            In Progress
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+
+        </select>
+
+        <select
+          value={priorityFilter}
+          onChange={(e) =>
+            setPriorityFilter(
+              e.target.value
+            )
+          }
+          className="p-3 border rounded-lg"
+        >
+
+          <option value="All">
+            All Priority
+          </option>
+
+          <option value="Low">
+            Low
+          </option>
+
+          <option value="Medium">
+            Medium
+          </option>
+
+          <option value="High">
+            High
+          </option>
+
+        </select>
+
+      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -312,7 +425,7 @@ const Tasks = () => {
 
       </form>
 
-      {tasks.length === 0 ? (
+      {filteredTasks.length === 0 ? (
 
         <div className="bg-white p-10 rounded-xl shadow text-center">
 
@@ -330,7 +443,7 @@ const Tasks = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
 
             <TaskCard
               key={task._id}
