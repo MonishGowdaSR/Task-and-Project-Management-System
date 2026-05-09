@@ -27,6 +27,10 @@ app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/dashboard", require("./routes/dashboardRoutes"));
+app.use(
+  "/api/ai",
+  require("./routes/aiRoutes")
+);
 
 app.use(notFound);
 app.use(errorHandler);
