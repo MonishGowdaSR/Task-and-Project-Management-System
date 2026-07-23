@@ -258,40 +258,31 @@ DELETE /api/tasks/:id
 
 ## Login Page
 
-*(Insert image)*
+![Login Page](screenshots/login-page.png)
 
 ---
 
 ## Registration Page
 
-*(Insert image)*
+![Registration Page](screenshots/register-page.png)
 
 ---
 
 ## Dashboard
 
-*(Insert image)*
+![Dashboard](screenshots/dashboard.png)
 
 ---
 
-## Project Management
+## Projects Page
 
-*(Insert image)*
+![Projects Page](screenshots/projects-page.png)
 
 ---
 
 ## Task Management
 
-*(Insert image)*
-
----
-
-## Dashboard Analytics
-
-*(Insert image)*
-
----
-
+![Task Management](screenshots/task-page.png)
 # Installation
 
 ## Clone Repository
@@ -407,4 +398,4 @@ MVJ College of Engineering, Bengaluru
 
 **GitHub:** https://github.com/MonishGowdaSR
 
-**LinkedIn:** *(Add your LinkedIn profile here.)*
+**LinkedIn:** www.linkedin.com/in/monishgowdasr
