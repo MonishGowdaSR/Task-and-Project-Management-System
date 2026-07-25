@@ -119,41 +119,6 @@ Interactive Dashboard displaying:
 
 # Technology Stack
 
-## Frontend
-
-- React.js
-- Vite
-- Tailwind CSS
-- Axios
-- React Router DOM
-
-## Backend
-
-- Node.js
-- Express.js
-
-## Database
-
-- MongoDB Atlas
-- Mongoose ODM
-
-## Authentication
-
-- JWT Authentication
-- bcrypt.js
-
-## Charts & Analytics
-
-- Recharts
-
-## Development Tools
-
-- VS Code
-- Git
-- GitHub
-- Postman
-
----
 | Category | Technologies |
 |----------|--------------|
 | Frontend | React.js, Vite, Tailwind CSS, Axios, React Router DOM |
@@ -162,6 +127,9 @@ Interactive Dashboard displaying:
 | Authentication | JWT, bcrypt |
 | Charts | Recharts |
 | Tools | Git, GitHub, VS Code, Postman |
+
+---
+
 
 # System Architecture Diagram
 
@@ -189,9 +157,12 @@ Collections used in the application:
 
 ### Users
 
-- Name
-- Email
-- Password
+| Field    | Type   |
+| -------- | ------ |
+| name     | String |
+| email    | String |
+| password | String |
+
 
 ### Projects
 
@@ -292,38 +263,49 @@ POST   /api/tasks
 PUT    /api/tasks/:id
 DELETE /api/tasks/:id
 ```
-
----
-
 # Screenshots
 
 ## Login Page
 
-![Login Page](screenshots/login-page.png)
+<p align="center">
+  <img src="./screenshots/login-page.png" width="90%">
+</p>
 
 ---
 
 ## Registration Page
 
-![Registration Page](screenshots/register-page.png)
+<p align="center">
+  <img src="./screenshots/register-page.png" width="90%">
+</p>
 
 ---
 
 ## Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+<p align="center">
+  <img src="./screenshots/dashboard.png" width="90%">
+</p>
 
 ---
 
-## Projects Page
+## Project Management
 
-![Projects Page](screenshots/projects-page.png)
+<p align="center">
+  <img src="./screenshots/projects-page.png" width="90%">
+</p>
 
 ---
 
 ## Task Management
 
-![Task Management](screenshots/task-page.png)
+<p align="center">
+  <img src="./screenshots/task-page.png" width="90%">
+</p>
+
+---
+
+
 # Installation
 
 ## Clone Repository
@@ -374,6 +356,8 @@ http://localhost:5000
 
 # Environment Variables
 
+The following variables are required for database connectivity and secure authentication.
+
 Create a `.env` file inside the server directory.
 
 ```env
@@ -389,7 +373,6 @@ JWT_SECRET=your_jwt_secret
 # Project Highlights
 
 - Developed a complete MERN-based Task and Project Management platform.
-- Implemented secure JWT Authentication and Protected Routes.
 - Designed responsive dashboard with real-time project statistics.
 - Developed complete CRUD functionality for projects and tasks.
 - Implemented dashboard analytics using Recharts.
@@ -428,6 +411,10 @@ Copyright © 2026 Monish Gowda S R.
 This repository showcases software engineering, full-stack web development, REST API development, and modern MERN application architecture.
 
 ---
+
+# Live Demo
+
+Deployment coming soon.
 
 # Author
 
