@@ -1,6 +1,7 @@
 <p align="center">
   <img src="./docs/banner.png" alt="Task and Project Management System Banner" width="100%">
 </p>
+
 # Task and Project Management System
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
