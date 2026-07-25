@@ -1,8 +1,31 @@
 # Task and Project Management System
 
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)
+![License](https://img.shields.io/badge/License-Educational-blue)
+
 A full-stack MERN application that streamlines project planning, task management, progress tracking, and team productivity through an intuitive dashboard, secure authentication, and project-centric workflow management.
 
 ---
+
+# Table of Contents
+
+- Overview
+- Key Features
+- Technology Stack
+- System Architecture
+- System Workflow
+- Database Design
+- Project Structure
+- REST API
+- Screenshots
+- Installation
+- Environment Variables
+- Project Highlights
+- Future Enhancements
+- License
+- Author
 
 # Overview
 
@@ -131,6 +154,14 @@ Interactive Dashboard displaying:
 - Postman
 
 ---
+| Category | Technologies |
+|----------|--------------|
+| Frontend | React.js, Vite, Tailwind CSS, Axios, React Router DOM |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas, Mongoose ODM |
+| Authentication | JWT, bcrypt |
+| Charts | Recharts |
+| Tools | Git, GitHub, VS Code, Postman |
 
 # System Architecture Diagram
 
