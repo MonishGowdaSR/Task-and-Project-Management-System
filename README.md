@@ -134,11 +134,21 @@ Interactive Dashboard displaying:
 
 # System Architecture Diagram
 
-High-level architecture illustrating interactions between the React frontend, Express backend, MongoDB Atlas database, and REST API communication.
+The following diagram illustrates the overall architecture of the Task and Project Management System. It shows how the React frontend communicates with the Express backend through REST APIs, how business logic is processed, and how data is stored securely in MongoDB Atlas using JWT-based authentication.
 
-**System Architecture Diagram**
+<p align="center">
+  <img src="./docs/System-Architecture.png" alt="System Architecture Diagram" width="100%">
+</p>
 
-*(Add architecture image here later.)*
+---
+
+# System Workflow Diagram
+
+The following workflow diagram illustrates the complete end-to-end user interaction within the Task and Project Management System, from user authentication to project and task management, dashboard analytics updates, and secure logout.
+
+<p align="center">
+  <img src="./docs/System-Workflow.png" alt="System Workflow Diagram" width="100%">
+</p>
 
 ---
 
