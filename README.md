@@ -153,32 +153,38 @@ The following workflow diagram illustrates the complete end-to-end user interact
 
 # Database Design
 
-Collections used in the application:
+The application uses three primary MongoDB collections to manage users, projects, and tasks.
 
-### Users
+## Users Collection
 
-| Field    | Type   |
-| -------- | ------ |
-| name     | String |
-| email    | String |
-| password | String |
+| Field | Type | Description |
+|-------|------|-------------|
+| Name | String | Full name of the user |
+| Email | String | Unique email address |
+| Password | String | Encrypted password (bcrypt hashed) |
 
+---
 
-### Projects
+## Projects Collection
 
-- Title
-- Description
-- Deadline
-- Created By
+| Field | Type | Description |
+|-------|------|-------------|
+| Title | String | Project title |
+| Description | String | Brief project description |
+| Deadline | Date | Project completion deadline |
+| Created By | ObjectId | Reference to the user who created the project |
 
-### Tasks
+---
 
-- Title
-- Description
-- Status
-- Priority
-- Project Reference
+## Tasks Collection
 
+| Field | Type | Description |
+|-------|------|-------------|
+| Title | String | Task title |
+| Description | String | Task details |
+| Status | String | Current task status (To Do, In Progress, Completed) |
+| Priority | String | Task priority (Low, Medium, High) |
+| Project Reference | ObjectId | Reference to the associated project |
 ---
 
 # Project Structure
