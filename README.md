@@ -2,7 +2,7 @@
   <img src="./docs/banner.png" alt="Task and Project Management System Banner" width="100%">
 </p>
 
-# Task and Project Management System
+# Project Overview
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
