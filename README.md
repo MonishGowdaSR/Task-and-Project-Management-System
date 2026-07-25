@@ -3,11 +3,13 @@
 </p>
 
 # Project Overview
-
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)
-![License](https://img.shields.io/badge/License-Educational-blue)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express.js-4.x-000000?logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-Educational-blue" />
+</p>
 
 A full-stack MERN application that streamlines project planning, task management, progress tracking, and team productivity through an intuitive dashboard, secure authentication, and project-centric workflow management.
 
